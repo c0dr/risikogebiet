@@ -7,9 +7,9 @@ function Result(props) {
     }
 
     return (
-        <div className={props.riskArea ? "risk" : "norisk"}>
-            <h2>{props.location} ist {props.riskArea ? "" : "kein"} Risikogebiet. </h2>
-            <p>Neuinfektionen pro 100k in den letzten 7 Tagen: {props.cases}</p>
+        <div className={`mt-5 ${props.riskArea ? "has-text-danger" : "has-text-success"}`}>
+            <h2><span className="has-text-weight-semibold">{props.location}</span> ist {props.riskArea ? "" : "kein"} Risikogebiet. </h2>
+            <p> <span className="has-text-weight-semibold">{props.cases}</span> Neuinfektionen pro 100k in den letzten 7 Tagen</p>
             <p>Datenstand: {props.last_update}</p>
         </div>
     );
