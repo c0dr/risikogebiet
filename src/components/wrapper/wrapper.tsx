@@ -10,6 +10,8 @@ function Wrapper() {
   const [searchPostalCode, setSearchPostalCode] = useState("");
   const [resultCoords, setResultCoords] = useState<Coordinates | undefined>(undefined);
   const [rkiData, setRKIData] = useState<CaseData>({location: "", riskArea: false, cases: 0, last_update: ""});
+  const [error, setError] = useState<boolean>(false);
+
 
   useEffect(() => {
       async function fetchOSMLocation() {
@@ -17,10 +19,10 @@ function Wrapper() {
               return;
           }
           try {
-              let coords = await loadOSMData(searchPostalCode);
-              setResultCoords(coords);
+              await loadOSMData(searchPostalCode).then(setResultCoords);
+              setError(false);
           } catch {
-              console.error("could not load data");
+              setError(true);
           }
       }
       fetchOSMLocation();
@@ -35,7 +37,7 @@ function Wrapper() {
           try {
               loadRKIData(resultCoords.lat, resultCoords.lon).then(setRKIData);
           } catch {
-              console.error("could not load data");
+            setError(false);
           }
       }
       fetchRKIData();
@@ -45,7 +47,7 @@ function Wrapper() {
   return (
     <div className="wrapper">
           <SearchForm updateSearchTerm={setSearchPostalCode} />
-          <Result caseData={rkiData}></Result>
+          <Result caseData={rkiData} error={error}></Result>
     </div>
   );
 }

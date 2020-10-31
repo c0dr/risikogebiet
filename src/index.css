@@ -8,5 +8,5 @@ body {
 }
 
 html {
-  background-color:  hsl(219, 70%, 96%) ;
+  background-color:  hsl(219, 70%, 96%) !important;
 }

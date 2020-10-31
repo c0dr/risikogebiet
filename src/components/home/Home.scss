@@ -1,0 +1,11 @@
+.home {
+    padding: 5rem 2rem;
+    margin: 0 auto;
+    max-width: 1040px;
+    display:block;
+}
+
+@import "bulma/sass/utilities/_all.sass";
+@import "bulma/sass/base/_all.sass";
+@import "bulma/sass/grid/columns.sass";
+@import "bulma/sass/elements/title.sass";

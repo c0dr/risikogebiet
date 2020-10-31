@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import './search.scss';
 
 export function SearchForm(props: { updateSearchTerm: (searchterm: string) => void; }) {
 
@@ -20,6 +21,9 @@ export function SearchForm(props: { updateSearchTerm: (searchterm: string) => vo
                         autoComplete="postal-code"
                         inputMode="numeric"
                         pattern="[0-9]*"
+                        required={true}
+                        placeholder="70565"
+                        maxLength={5}
                         onChange={e => setSearchTerm(e.target.value)}
                     />
                 </div>
