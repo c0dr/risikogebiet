@@ -1,4 +1,4 @@
-export default async function loadRKIData(lat, lon) {
+export async function loadRKIData(lat: String, lon: String): Promise<CaseData> {
     const response = await fetch(
         `https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/RKI_Landkreisdaten/FeatureServer/0/query?where=1%3D1&outFields=last_update,cases7_per_100k,county&geometry=${lon},${lat}&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&returnGeometry=false&outSR=4326&f=json`,
     );
@@ -19,3 +19,10 @@ export default async function loadRKIData(lat, lon) {
         "riskArea": cityData.cases7_per_100k.toFixed() > 50
     }
 }
+
+export type CaseData = {
+    last_update: string;
+    cases: number;
+    location: string;
+    riskArea: boolean
+  }

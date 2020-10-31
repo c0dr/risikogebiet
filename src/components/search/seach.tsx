@@ -1,13 +1,10 @@
-import React, { useState, useEffect, useRef } from "react";
-import Result from '../result/Result';
-import loadRKIData from '../../api/rki';
-import loadOSMData from '../../api/osm';
+import React, { useState } from "react";
 
-export function SearchForm(props) {
+export function SearchForm(props: { updateSearchTerm: (searchterm: string) => void; }) {
 
     const [searchterm, setSearchTerm] = useState("");
 
-    const handleSubmit = (evt) => {
+    const handleSubmit = (evt: React.FormEvent) => {
         evt.preventDefault();
         props.updateSearchTerm(searchterm);
     }

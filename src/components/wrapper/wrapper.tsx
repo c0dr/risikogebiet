@@ -1,15 +1,15 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import '../search/seach';
 import { SearchForm } from '../search/seach';
 import  Result from '../result/Result';
-import loadOSMData from '../../api/osm';
-import loadRKIData from '../../api/rki';
+import {loadOSMData, Coordinates }  from '../../api/osm';
+import {loadRKIData, CaseData } from '../../api/rki';
 
 function Wrapper() {
 
   const [searchPostalCode, setSearchPostalCode] = useState("");
-  const [resultCoords, setResultCoords] = useState("");
-  const [rkiData, setRKIData] = useState("");
+  const [resultCoords, setResultCoords] = useState<Coordinates | undefined>(undefined);
+  const [rkiData, setRKIData] = useState<CaseData>({location: "", riskArea: false, cases: 0, last_update: ""});
 
   useEffect(() => {
       async function fetchOSMLocation() {
@@ -17,7 +17,8 @@ function Wrapper() {
               return;
           }
           try {
-              await loadOSMData(searchPostalCode).then(setResultCoords);
+              let coords = await loadOSMData(searchPostalCode);
+              setResultCoords(coords);
           } catch {
               console.error("could not load data");
           }
@@ -44,7 +45,7 @@ function Wrapper() {
   return (
     <div className="wrapper">
           <SearchForm updateSearchTerm={setSearchPostalCode} />
-          <Result {...rkiData}></Result>
+          <Result caseData={rkiData}></Result>
     </div>
   );
 }

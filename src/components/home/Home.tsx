@@ -1,11 +1,9 @@
-import React, { useState, useEffect, useRef } from "react";
+import React from "react";
 import Wrapper from '../wrapper/wrapper';
 import './Home.css'
 
 
-function Home() {
-
-  
+export default function Home() {
   return (
     <div className="home">
       <div className="columns">
@@ -19,5 +17,3 @@ function Home() {
     </div>
   );
 }
-
-export default Home;

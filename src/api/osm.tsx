@@ -1,4 +1,4 @@
-export default async function getCoordinatesForSearchTerm(query) {
+export async function loadOSMData(query: string) : Promise<Coordinates>{
     const response = await fetch(
         `https://nominatim.openstreetmap.org/search.php?q=${query}&polygon_geojson=1&format=jsonv2&countrycodes=DE`,
     );
@@ -14,3 +14,8 @@ export default async function getCoordinatesForSearchTerm(query) {
         throw Error('Could not find location');
     }
 }
+
+export type Coordinates = {
+    lat: string;
+    lon: string;
+  }
