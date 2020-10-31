@@ -1,4 +1,4 @@
-<h1 align="center">Welcome to risikogebiet 👋</h1>
+<h1 align="center"> risikogebiet</h1>
 <p>
   <img alt="Version" src="https://img.shields.io/badge/version-0.1.0-blue.svg?cacheSeconds=2592000" />
   <a href="https://opensource.org/licenses/MIT" target="_blank">
@@ -9,7 +9,20 @@
 
 > A simple react app to check if a district in Germany is considered a COVID risk area.
 
+
+## Screenshots
+<img src="img/riskarea.png"/>
+<img src="img/green.png"/>
+
 Please wear a mask and keep distance in any case 😷.
+
+
+## Stack
+
+* React
+* Typescript
+* SASS
+* Bulma for some styles
 
 ## Install
 
